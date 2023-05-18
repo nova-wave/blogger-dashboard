@@ -6,14 +6,19 @@
 
 .card {
   padding: 8px 12px 8px 16px;
-  border-color: #333;
   border-radius: 8px;
+  border-color: #333;
   border-width: 1px;
   border-style: solid;
 }
-.bg-dark {
-  background: #0a0a0a;
+.main-border {
+  border-color: #333;
+  border-width: 1px;
+  border-style: solid;
 }
 .bg-dark-light {
+  background: #0a0a0a;
+}
+.bg-dark {
   background: #000000;
 }

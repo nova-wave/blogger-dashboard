@@ -8,7 +8,7 @@ const metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <div className="card">
+            <div className="card bg-dark-light">
                 hi
             </div>
             <div>
