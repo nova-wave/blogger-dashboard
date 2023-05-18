@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#000000]`}>
+      <body className={`${inter.className} bg-[#000000] text-[#eaeaea]`}>
         <header className="border-b-[1px] sticky top-0 z-50 flex flex-col w-full antialiased backdrop-blur-sm backdrop-saturate-200 bg-white/80 dark:bg-black/50">
           hello
         </header>

@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return (
         <div>
             <div className="card bg-dark-light">
-                hi
+                <span className="bg-gray">hello</span>
             </div>
             <div>
                 {children}
