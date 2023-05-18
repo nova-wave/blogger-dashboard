@@ -1,4 +1,5 @@
 import LeftSide from "@/components/leftSide";
+import RightSide from "@/components/rightSide";
 
 export default function CourseLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -9,7 +10,9 @@ export default function CourseLayout({ children }: { children: React.ReactNode }
                         <LeftSide />
                     </div>
                     <div className="w-full">{children}</div>
-                    <div className="w-full max-w-[260px]">d</div>
+                    <div className="w-full max-w-[260px]">
+                        <RightSide />
+                    </div>
                 </div>
             </div>
         </div>
