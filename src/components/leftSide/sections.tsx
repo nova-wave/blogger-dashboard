@@ -30,7 +30,7 @@ const section: string[] = [
 
 export default function Sections() {
     return (
-        <div className="p-2 h-full min-h-[540px] overflow-y-scroll">
+        <div className="p-2 pt-4 pb-28 h-full min-h-[540px] overflow-y-scroll">
             {section.map((sectionItem, index) => {
                 return <Section key={index} section={sectionItem} />
             })}

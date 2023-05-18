@@ -3,7 +3,7 @@ interface PropsTypes {
 }
 const Section: React.FC<PropsTypes> = ({ section }) => {
     return (
-        <div className="card">
+        <div className="card mb-2">
             {section}
         </div>
     )
