@@ -31,3 +31,23 @@
 .text-gray {
   color: #888;
 }
+
+/* scrollbar customize */
+::-webkit-scrollbar {
+  /* width */
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+    /* Track */
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    cursor: pointer;
+  /* Handle */
+  background: #2a2828;
+}
+::-webkit-scrollbar-thumb:hover {
+  /* Handle on hover */
+  background: #555;
+}
