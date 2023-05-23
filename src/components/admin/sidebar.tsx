@@ -6,7 +6,8 @@ export default function Sidebar() {
         <div className="p-3">
             {sidebar.map((item, index) => {
                 return (
-                    <Link href={`/`} key={index}>
+                    <Link href={`/admin?tab=${item.link}`} key={index}>
+                        <item.icon />
                         <div>{item.name}</div>
                     </Link>
                 )
