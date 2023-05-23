@@ -6,36 +6,42 @@ import {
 } from "react-icons/ai";
 import { SiReacthookform } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
+import { IconType } from "react-icons";
 
-export const sidebar = [
+type Sidebar = {
+  icon: IconType;
+  name: string;
+  link: string;
+}[];
+export const sidebar: Sidebar = [
   {
     icon: AiOutlineHome,
     name: "Admin",
-    link: "/admin",
+    link: "admin",
   },
   {
     icon: AiOutlineBarChart,
     name: "Chart",
-    link: "/chart",
+    link: "chart",
   },
   {
     icon: SiReacthookform,
-    name: "",
-    link: "",
+    name: "Form",
+    link: "form",
   },
   {
     icon: AiOutlineMail,
-    name: "",
-    link: "",
+    name: "Email",
+    link: "email",
   },
   {
     icon: CgProfile,
-    name: "",
-    link: "",
+    name: "Profile",
+    link: "profile",
   },
   {
     icon: AiFillSetting,
-    name: "",
-    link: "",
+    name: "Setting",
+    link: "setting",
   },
 ];
