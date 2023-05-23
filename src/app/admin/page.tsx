@@ -1,6 +1,6 @@
 function Page () {
     return (
-        <div></div>
+        <div>Admin</div>
     )
 };
 
