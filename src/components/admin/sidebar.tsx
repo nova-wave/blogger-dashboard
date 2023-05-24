@@ -22,7 +22,11 @@ export default function Sidebar() {
         <BsFiletypeDoc /> New Doc
       </button>
       {open && (
-        <ModalWrapper title="Create a New Doc" children={<PostModal />} />
+        <ModalWrapper
+          setOpen={setOpen}
+          title="Create a New Doc"
+          children={<PostModal />}
+        />
       )}
       {/* Menus */}
       {sidebar.map((item, index) => {
