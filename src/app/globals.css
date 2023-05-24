@@ -38,12 +38,12 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-    /* Track */
-    background: #000000;
+  /* Track */
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-    border-radius: 50px;
-    cursor: pointer;
+  border-radius: 50px;
+  cursor: pointer;
   /* Handle */
   background: #2a2828;
 }
