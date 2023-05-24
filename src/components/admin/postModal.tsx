@@ -13,7 +13,7 @@ export default function PostModal() {
         markdownContent={markdownContent}
         setMarkdownContent={setMarkdownContent}
       />
-      <PreviewMarkdown />
+      <PreviewMarkdown markdownContent={markdownContent} />
     </div>
   );
 }
