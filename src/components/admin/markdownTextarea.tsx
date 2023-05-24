@@ -16,7 +16,7 @@ export default function MarkdownTextarea({
   return (
     <div>
       <TextareaAutosize
-        className="textbox"
+        className="textbox py-3 px-2 min-h-[300px] w-full"
         value={markdownContent}
         onChange={handleChange}
         placeholder="Start typing your Markdown here..."
