@@ -3,7 +3,7 @@ import ModalWrapper from "@/components/common/modalWrapper";
 function Page() {
   return (
     <div>
-      <ModalWrapper>hello modal</ModalWrapper>
+      <ModalWrapper title="modal modal">hello modal</ModalWrapper>
     </div>
   );
 }
