@@ -1,7 +1,11 @@
-function Page () {
-    return (
-        <div>Admin</div>
-    )
-};
+import ModalWrapper from "@/components/common/modalWrapper";
 
-export default Page
+function Page() {
+  return (
+    <div>
+      <ModalWrapper>hello modal</ModalWrapper>
+    </div>
+  );
+}
+
+export default Page;
