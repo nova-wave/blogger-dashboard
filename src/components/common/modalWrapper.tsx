@@ -22,7 +22,7 @@ export default function ModalWrapper({ children, title, setOpen }: PropsTypes) {
         </div>
       </div>
       {/* modal content */}
-      <div className="p-2 pb-4 mix-h-[90vh] overflow-y-scroll">{children}</div>
+      <div className="p-2 pb-4 h-[85vh] overflow-y-scroll">{children}</div>
     </div>
   );
 }

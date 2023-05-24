@@ -1,6 +1,6 @@
 export default function PostModal() {
   return (
-    <div>
+    <div className="w-[90vw]">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique non
       omnis et ea ex debitis sed ullam nihil architecto commodi! Iusto
       necessitatibus explicabo ex modi cum ut quis officiis itaque debitis ipsam
