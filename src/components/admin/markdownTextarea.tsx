@@ -1,8 +1,14 @@
 import TextareaAutosize from "react-textarea-autosize";
-import { useState } from "react";
 
-export default function MarkdownTextarea() {
-  const [markdownContent, setMarkdownContent] = useState("");
+interface PropsTypes {
+  setMarkdownContent: (arg0: string) => void;
+  markdownContent: string;
+}
+
+export default function MarkdownTextarea({
+  markdownContent,
+  setMarkdownContent,
+}: PropsTypes) {
   const handleChange = (e: any) => {
     setMarkdownContent(e.target.value);
   };
@@ -17,4 +23,7 @@ export default function MarkdownTextarea() {
       />
     </div>
   );
+}
+function setMarkdownContent(value: any) {
+  throw new Error("Function not implemented.");
 }
