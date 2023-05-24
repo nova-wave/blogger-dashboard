@@ -3,6 +3,7 @@ import { MdOutlineClose } from "react-icons/md";
 interface PropsTypes {
   children: React.ReactNode;
   title?: string;
+  setOpen: () => void;
 }
 
 export default function ModalWrapper({ children, title }: PropsTypes) {

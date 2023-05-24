@@ -15,7 +15,10 @@ export default function Sidebar() {
 
   return (
     <div className="p-3">
-      <button className="text-lg text-white border border-white py-1 px-3">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-lg text-white border border-white py-1 px-3 flex gap-2 rounded items-center hover:border-[#23a2cd] hover:text-[#23a2cd] hover:bg-[white] transition duration-150"
+      >
         <BsFiletypeDoc /> New Doc
       </button>
       {open && (
