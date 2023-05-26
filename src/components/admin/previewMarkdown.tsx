@@ -12,59 +12,44 @@ interface PropsTypes {
 }
 
 const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
-  console.log(markdownContent);
-
-  const extractDetailsAndSummary = (text: string) => {
-    let details = "";
-    let summary = "";
-    const detailsRegex = /<details>([\s\S]*?)<\/details>/;
-    const detailsMatch = text.match(detailsRegex);
-    if (detailsMatch) {
-      details = detailsMatch[1].trim();
-    }
-    const summaryRegex = /<summary>([\s\S]*?)<\/summary>/;
-    const summaryMatch = text.match(summaryRegex);
-    if (summaryMatch) {
-      summary = summaryMatch[1].trim();
-    }
-    return { details, summary };
-  };
-
-  const { details, summary } = extractDetailsAndSummary(markdownContent);
-
-  console.log({summary});
-  console.log({details});
   return (
     <div className="markdown-preview-custom">
-      <ReactMarkdown
-        // remarkPlugins={[[remarkMath, remarkGfm, { singleTilde: false }]]}
-        // rehypePlugins={[rehypeKatex]}
-        // remarkPlugins={[rehypeRaw]}
-        components={{
-          code: ({ node, inline, className, children, ...props }) => {
-            const match = /language-(\w+)/.exec(className || "");
-            return !inline && match ? (
-              <SyntaxHighlighter
-                style={solarizedlight as any}
-                language={match[1]}
-                PreTag="div"
-                {...props}
-                // style={{} as CSSProperties} // Explicitly type the style prop
-              >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            );
-          },
-        }}
-      >
-        {markdownContent}
-      </ReactMarkdown>
+      <ReactMarkdown components={components}>{markdownContent}</ReactMarkdown>
     </div>
   );
 };
 
+const DetailsComponent = ({ children }: any) => <details>{children}</details>;
+const SummaryComponent = ({ children }: any) => <summary>{children}</summary>;
+
+const CodeComponent = ({
+  node,
+  inline,
+  className,
+  children,
+  ...props
+}: any) => {
+  const match = /language-(\w+)/.exec(className || "");
+  return !inline && match ? (
+    <SyntaxHighlighter
+      style={solarizedlight}
+      language={match[1]}
+      PreTag="div"
+      {...props}
+    >
+      {String(children).replace(/\n$/, "")}
+    </SyntaxHighlighter>
+  ) : (
+    <code className={className} {...props}>
+      {children}
+    </code>
+  );
+};
+
+const components = {
+  code: CodeComponent,
+  details: DetailsComponent,
+  summary: SummaryComponent,
+};
+console.log(components);
 export default PreviewMarkdown;
