@@ -89,7 +89,24 @@
 .markdown-preview-custom pre div {
   background: transparent !important;
 }
+.markdown-preview-custom ol {
+  list-style-type: style !important;
+}
+.markdown-preview-custom ul {
+  list-style-type: disc !important;
+}
+.markdown-preview-custom summary {
+  cursor: pointer !important;
+}
+.markdown-preview-custom .offer-card{
+  @apply border-4 border-emerald-700 shadow border-l-rose-600  rounded  bg-emerald-700 py-4 px-6
+}
 
+/* .markdown-preview-custom li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+} */
 /* 
 ==========================
 ====Markdown custom Styles======
