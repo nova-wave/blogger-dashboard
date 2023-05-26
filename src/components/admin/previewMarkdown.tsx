@@ -12,6 +12,28 @@ interface PropsTypes {
 }
 
 const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
+  console.log(markdownContent);
+
+  const extractDetailsAndSummary = (text: string) => {
+    let details = "";
+    let summary = "";
+    const detailsRegex = /<details>([\s\S]*?)<\/details>/;
+    const detailsMatch = text.match(detailsRegex);
+    if (detailsMatch) {
+      details = detailsMatch[1].trim();
+    }
+    const summaryRegex = /<summary>([\s\S]*?)<\/summary>/;
+    const summaryMatch = text.match(summaryRegex);
+    if (summaryMatch) {
+      summary = summaryMatch[1].trim();
+    }
+    return { details, summary };
+  };
+
+  const { details, summary } = extractDetailsAndSummary(markdownContent);
+
+  console.log({summary});
+  console.log({details});
   return (
     <div className="markdown-preview-custom">
       <ReactMarkdown
@@ -36,39 +58,6 @@ const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
                 {children}
               </code>
             );
-          },
-          p: ({ node, children }) => {
-            // if (markdownContent.match("<details>")) {
-            //   return (
-            //     <details>{markdownContent.match("<details>")!.input}</details>
-            //   );
-            // }
-            const extractDetailsAndSummary = (text: string) => {
-              let details = "";
-              let summary = "";
-
-              // Extract details content
-              const detailsRegex = /<details>([\s\S]*?)<\/details>/;
-              const detailsMatch = text.match(detailsRegex);
-              if (detailsMatch) {
-                details = detailsMatch[1].trim();
-              }
-
-              // Extract summary content
-              const summaryRegex = /<summary>([\s\S]*?)<\/summary>/;
-              const summaryMatch = text.match(summaryRegex);
-              if (summaryMatch) {
-                summary = summaryMatch[1].trim();
-              }
-              if (summary) {
-                return <summary>{summary}</summary>;
-              }
-              if (details) {
-                return <details>{details}</details>;
-              }
-            };
-            console.log(extractDetailsAndSummary(markdownContent));
-            return <p>p</p>;
           },
         }}
       >
