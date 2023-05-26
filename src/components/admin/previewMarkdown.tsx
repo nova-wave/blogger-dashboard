@@ -20,7 +20,6 @@ const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
         // remarkPlugins={[rehypeRaw]}
         components={{
           code: ({ node, inline, className, children, ...props }) => {
-            console.log(node);
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
@@ -39,15 +38,37 @@ const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
             );
           },
           p: ({ node, children }) => {
-            const isSummary = React.Children.toArray(children).some(
-              (child) => (child as any).type === "summary"
-            );
+            // if (markdownContent.match("<details>")) {
+            //   return (
+            //     <details>{markdownContent.match("<details>")!.input}</details>
+            //   );
+            // }
+            const extractDetailsAndSummary = (text: string) => {
+              let details = "";
+              let summary = "";
 
-            if (isSummary) {
-              return <details>{children}</details>;
-            }
+              // Extract details content
+              const detailsRegex = /<details>([\s\S]*?)<\/details>/;
+              const detailsMatch = text.match(detailsRegex);
+              if (detailsMatch) {
+                details = detailsMatch[1].trim();
+              }
 
-            return <p>{children}</p>;
+              // Extract summary content
+              const summaryRegex = /<summary>([\s\S]*?)<\/summary>/;
+              const summaryMatch = text.match(summaryRegex);
+              if (summaryMatch) {
+                summary = summaryMatch[1].trim();
+              }
+              if (summary) {
+                return <summary>{summary}</summary>;
+              }
+              if (details) {
+                return <details>{details}</details>;
+              }
+            };
+            console.log(extractDetailsAndSummary(markdownContent));
+            return <p>p</p>;
           },
         }}
       >
