@@ -14,42 +14,35 @@ interface PropsTypes {
 const PreviewMarkdown: React.FC<PropsTypes> = ({ markdownContent }) => {
   return (
     <div className="markdown-preview-custom">
-      <ReactMarkdown components={components}>{markdownContent}</ReactMarkdown>
+      <ReactMarkdown
+        // remarkPlugins={[[remarkMath, remarkGfm, { singleTilde: false }]]}
+        // rehypePlugins={[rehypeKatex]}
+        // remarkPlugins={[rehypeRaw]}
+        components={{
+          code: ({ node, inline, className, children, ...props }) => {
+            const match = /language-(\w+)/.exec(className || "");
+            return !inline && match ? (
+              <SyntaxHighlighter
+                style={solarizedlight as any}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+                // style={{} as CSSProperties} // Explicitly type the style prop
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          },
+        }}
+      >
+        {(markdownContent as any).match(/<details>([\s\S]*?)<\/details>/g)}
+      </ReactMarkdown>
     </div>
   );
 };
 
-const DetailsComponent = ({ children }: any) => <details>{children}</details>;
-const SummaryComponent = ({ children }: any) => <summary>{children}</summary>;
-
-const CodeComponent = ({
-  node,
-  inline,
-  className,
-  children,
-  ...props
-}: any) => {
-  const match = /language-(\w+)/.exec(className || "");
-  return !inline && match ? (
-    <SyntaxHighlighter
-      style={solarizedlight}
-      language={match[1]}
-      PreTag="div"
-      {...props}
-    >
-      {String(children).replace(/\n$/, "")}
-    </SyntaxHighlighter>
-  ) : (
-    <code className={className} {...props}>
-      {children}
-    </code>
-  );
-};
-
-const components = {
-  code: CodeComponent,
-  details: DetailsComponent,
-  summary: SummaryComponent,
-};
-console.log(components);
 export default PreviewMarkdown;
