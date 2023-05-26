@@ -95,6 +95,9 @@
 .markdown-preview-custom ul {
   list-style-type: disc !important;
 }
+.markdown-preview-custom summary {
+  cursor: pointer !important;
+}
 
 /* .markdown-preview-custom li::before {
   content: "\2022";
