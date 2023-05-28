@@ -16,14 +16,14 @@ type Sidebar = {
 }[];
 export const sidebar: Sidebar = [
   {
-    icon: BsFiletypeDoc,
-    name: "New Doc",
-    link: "new-doc",
-  },
-  {
     icon: AiOutlineHome,
     name: "Admin",
     link: "admin",
+  },
+  {
+    icon: BsFiletypeDoc,
+    name: "New Doc",
+    link: "new-doc",
   },
   {
     icon: AiOutlineBarChart,
