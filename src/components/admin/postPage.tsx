@@ -2,10 +2,10 @@ import MarkdownTextarea from "./markdownTextarea";
 import { useState } from "react";
 import PreviewMarkdown from "./previewMarkdown";
 
-export default function PostModal() {
+export default function PostPage() {
   const [markdownContent, setMarkdownContent] = useState("");
   return (
-    <div className="w-[90vw]">
+    <div className="w-full">
       <MarkdownTextarea
         markdownContent={markdownContent}
         setMarkdownContent={setMarkdownContent}
