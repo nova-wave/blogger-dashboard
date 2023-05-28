@@ -4,15 +4,27 @@ import TextareaAutosize from "react-textarea-autosize";
 interface PropsTypes {
   setMarkdownContent: (arg0: string) => void;
   markdownContent: string;
+  setPreview: any;
+  preview: boolean;
+}
+
+interface DataTypes {
+  name?: string;
+  title?: string;
+  meta_title?: string;
+  meta_description?: string;
+  topic?: string;
 }
 
 export default function MarkdownTextarea({
   markdownContent,
   setMarkdownContent,
+  preview,
+  setPreview,
 }: PropsTypes) {
-  const [data, setData] = useState({});
-  const [fields, setFields] = useState("fields");
-  const [preview, setPreview] = useState("preview");
+  const [data, setData] = useState<DataTypes>({});
+  const [fields, setFields] = useState(false);
+
   const handleChange = (e: any) => {
     setMarkdownContent(e.target.value);
   };
@@ -22,17 +34,33 @@ export default function MarkdownTextarea({
       ...data,
       [e.target.name]: e.target.value,
     });
+    console.log(data);
   };
 
+  const { name, title, meta_title, meta_description, topic } = data || {};
   return (
     <div>
-      <div></div>
-      {fields === "fields" && (
+      <div className="h-10 p-2 mt-2 mb-6 border-2 border-amber-600">
+        <button
+          onClick={() => setFields(!fields)}
+          className="shadow shadow-emerald-600 bg-transparent border border-emerald-600 hover:bg-emerald-600 transition duration-200 mr-2"
+        >
+          {fields ? "Hide Fields" : "Show Fields"}
+        </button>
+        <button
+          onClick={() => setPreview(!preview)}
+          className="shadow shadow-emerald-600 bg-transparent border border-emerald-600 hover:bg-emerald-600 transition duration-200 mr-2"
+        >
+          {preview ? "Hide Markdown" : "Preview Markdown"}
+        </button>
+      </div>
+      {fields && (
         <div>
           <fieldset className="mb-6">
             {/* Doc title field */}
             <input
               name="title"
+              value={title}
               onChange={handleFieldChange}
               type="text"
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
@@ -41,6 +69,7 @@ export default function MarkdownTextarea({
             {/* Section or Doc sort Name */}
             <input
               name="name"
+              value={name}
               onChange={handleFieldChange}
               type="text"
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
@@ -50,6 +79,7 @@ export default function MarkdownTextarea({
             <select
               onChange={handleFieldChange}
               name="topic"
+              value={topic}
               className="border-2 border-x-transparent border-gray-700 w-full py-2 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
             >
               <option className="py-2" value="Python">
@@ -80,12 +110,16 @@ export default function MarkdownTextarea({
             <input
               type="text"
               name="meta_title"
+              value={meta_title}
+              onChange={handleFieldChange}
               placeholder="Enter you meta title"
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
             />
             <textarea
               name="meta_description"
+              value={meta_description}
               rows={10}
+              onChange={handleFieldChange}
               placeholder="Enter you meta description"
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
             ></textarea>
@@ -93,12 +127,14 @@ export default function MarkdownTextarea({
         </div>
       )}
       {/* markdown writer */}
-      <TextareaAutosize
-        className="textbox py-3 px-2 min-h-[300px] w-full bg-[#333] border-2 border-transparent hover:border-[#666] text-lg focus:outline-none"
-        value={markdownContent}
-        onChange={handleChange}
-        placeholder="Start typing your Markdown here..."
-      />
+      {!preview && (
+        <TextareaAutosize
+          className="textbox py-3 px-2 min-h-[300px] w-full bg-[#333] border-2 border-transparent hover:border-[#666] text-lg focus:outline-none"
+          value={markdownContent}
+          onChange={handleChange}
+          placeholder="Start typing your Markdown here..."
+        />
+      )}
     </div>
   );
 }
