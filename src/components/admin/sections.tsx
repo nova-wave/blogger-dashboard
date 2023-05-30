@@ -1,31 +1,48 @@
+"use client";
 import { useState } from "react";
 
 const languagesData = ["Python", "Javascript", "Go", "C++", "C#", "C"];
 
-const Sections = () => {
-  const [languages, setLanguages] = useState("");
+export default function SectionsPage() {
+  const [data, setData] = useState({});
+
+  const handleFieldsChange = (e: any) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div>
       <form>
         <fieldset>
-          <select name="topic" id="">
-            {languagesData.map((lang, index) => (
-              <option value={lang} key={index}>
-                {lang}
-              </option>
-            ))}
-          </select>
+          <div>
+            <select
+              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
+              name="topic"
+            >
+              {languagesData.map((lang, index) => (
+                <option value={lang} key={index}>
+                  {lang}
+                </option>
+              ))}
+            </select>
+            <input
+              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
+              type="number"
+              name="order"
+              placeholder="select order number"
+              min={0}
+              max={50}
+            />
+          </div>
           <input
-            type="number"
-            name="order"
-            placeholder="select order number"
-            min={0}
-            max={50}
+            className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
+            type="text"
+            placeholder="Write section name"
           />
         </fieldset>
       </form>
     </div>
   );
-};
-
-export default Sections;
+}
