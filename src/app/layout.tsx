@@ -1,11 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import axios from "axios";
 const inter = Inter({ subsets: ["latin"] });
-
-axios.create({
-  baseURL: process.env.NEXT_PUBLIC_PRODUCTION_URL,
-});
 
 export const metadata = {
   title: "Blogger",

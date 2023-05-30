@@ -1,7 +1,7 @@
 "use client";
+import axios from "@/lib/axios";
 import { useState } from "react";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
-import axios from "axios";
 const languagesData = ["Python", "Javascript", "Go", "C++", "C#", "C"];
 
 export default function SectionsPage() {
@@ -17,9 +17,9 @@ export default function SectionsPage() {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const response = axios.post("/api/v1/section", {
+    const response = await axios.post(`/api/v1/sections`, {
       topic: data.topic.toLowerCase(),
       name: `${data.topic} ${data.name}`,
       order: Number(data.order),
