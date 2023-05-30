@@ -34,7 +34,7 @@ export default function MarkdownTextarea({
       ...data,
       [e.target.name]: e.target.value,
     });
-    console.log(data);
+    
   };
 
   const { name, title, meta_title, meta_description, topic } = data || {};
