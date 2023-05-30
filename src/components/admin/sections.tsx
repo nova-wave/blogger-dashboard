@@ -12,9 +12,17 @@ export default function SectionsPage() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(data);
+  };
   return (
     <div className="grid grid-cols-12 gap-3">
-      <form className="col-span-8 grid grid-cols-6 gap-2">
+      <form
+        onSubmit={handleSubmit}
+        className="col-span-8 grid grid-cols-6 gap-2"
+      >
         <fieldset className="col-span-5">
           <div className="grid grid-cols-2 gap-4">
             <select
