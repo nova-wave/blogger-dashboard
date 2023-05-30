@@ -1,7 +1,7 @@
 "use client";
 
 import PostPage from "@/components/admin/postPage";
-import Sections from "@/components/admin/sections";
+import SectionsPage from "@/components/admin/sections";
 import { useSearchParams } from "next/navigation";
 
 function Page() {
@@ -11,7 +11,7 @@ function Page() {
   return (
     <div className="p-4 pl-0">
       {tab === "new-doc" && <PostPage />}
-      {tab === "sections" && <Sections />}
+      {tab === "sections" && <SectionsPage />}
     </div>
   );
 }

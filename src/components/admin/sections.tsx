@@ -1,12 +1,12 @@
-import { useState } from "react";
+"use client";
+// import { useState } from "react";
 
-const languagesData = ["Python", "Javascript", "Go", "C++", "C#", "C"];
+// const languagesData = ["Python", "Javascript", "Go", "C++", "C#", "C"];
 
-const Sections = () => {
-  const [languages, setLanguages] = useState("");
+export default function SectionsPage() {
   return (
     <div>
-      <form>
+      {/* <form>
         <fieldset>
           <select name="topic" id="">
             {languagesData.map((lang, index) => (
@@ -23,9 +23,7 @@ const Sections = () => {
             max={50}
           />
         </fieldset>
-      </form>
+      </form> */}
     </div>
   );
-};
-
-export default Sections;
+}

@@ -1,3 +1,4 @@
+"use client";
 import MarkdownTextarea from "./markdownTextarea";
 import { useState } from "react";
 import PreviewMarkdown from "./previewMarkdown";
