@@ -1,3 +1,4 @@
+import axios from "@/lib/axios";
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -14,6 +15,7 @@ interface DataTypes {
   meta_title?: string;
   meta_description?: string;
   topic?: string;
+  meta_keywords: string;
 }
 
 export default function MarkdownTextarea({
@@ -22,7 +24,7 @@ export default function MarkdownTextarea({
   preview,
   setPreview,
 }: PropsTypes) {
-  const [data, setData] = useState<DataTypes>({});
+  const [data, setData] = useState<DataTypes | any>({ topic: "Python" });
   const [fields, setFields] = useState(false);
 
   const handleChange = (e: any) => {
@@ -34,10 +36,17 @@ export default function MarkdownTextarea({
       ...data,
       [e.target.name]: e.target.value,
     });
-    
   };
 
-  const { name, title, meta_title, meta_description, topic } = data || {};
+  const { name, meta_title, meta_description, topic, meta_keywords } =
+    data || {};
+  const handleSubmitDoc = async (e: any) => {
+    const response = await axios.post("/api/v1/doc", {
+      ...data,
+      content: markdownContent,
+    });
+    console.log(response);
+  };
   return (
     <div>
       <div className="h-10 p-2 mt-2 mb-6 border-2 border-amber-600">
@@ -53,21 +62,20 @@ export default function MarkdownTextarea({
         >
           {preview ? "Hide Markdown" : "Preview Markdown"}
         </button>
+        <button
+          onClick={handleSubmitDoc}
+          className="shadow shadow-emerald-600 bg-transparent border border-emerald-600 hover:bg-emerald-600 transition duration-200 mr-2"
+          type="submit"
+        >
+          Submit
+        </button>
       </div>
       {fields && (
         <div>
           <fieldset className="mb-6">
-            {/* Doc title field */}
-            <input
-              name="title"
-              value={title}
-              onChange={handleFieldChange}
-              type="text"
-              className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
-              placeholder="Enter doc title"
-            />
             {/* Section or Doc sort Name */}
             <input
+              required
               name="name"
               value={name}
               onChange={handleFieldChange}
@@ -77,6 +85,7 @@ export default function MarkdownTextarea({
             />
             {/* Select languages */}
             <select
+              required
               onChange={handleFieldChange}
               name="topic"
               value={topic}
@@ -108,6 +117,7 @@ export default function MarkdownTextarea({
           {/* SEO */}
           <fieldset className="mb-6 pb-0">
             <input
+              required
               type="text"
               name="meta_title"
               value={meta_title}
@@ -116,11 +126,21 @@ export default function MarkdownTextarea({
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
             />
             <textarea
+              required
               name="meta_description"
               value={meta_description}
-              rows={10}
+              rows={5}
               onChange={handleFieldChange}
               placeholder="Enter you meta description"
+              className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
+            ></textarea>
+            <textarea
+              required
+              name="meta_keywords"
+              value={meta_keywords}
+              rows={5}
+              onChange={handleFieldChange}
+              placeholder="Enter you meta keywords"
               className="border-2 border-x-transparent border-gray-700 w-full py-1 px-2 rounded bg-black focus:underline-none focus:border-gray-500"
             ></textarea>
           </fieldset>

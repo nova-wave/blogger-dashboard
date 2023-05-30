@@ -1,11 +1,15 @@
 "use client";
+import axios from "@/lib/axios";
 import { useState } from "react";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 const languagesData = ["Python", "Javascript", "Go", "C++", "C#", "C"];
 
 export default function SectionsPage() {
-  const [data, setData] = useState({});
-
+  const [data, setData] = useState({
+    topic: "Python",
+    order: 0,
+    name: "",
+  });
   const handleFieldsChange = (e: any) => {
     setData({
       ...data,
@@ -13,9 +17,14 @@ export default function SectionsPage() {
     });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
+    const response = await axios.post(`/api/v1/sections`, {
+      topic: data.topic.toLowerCase(),
+      name: `${data.topic} ${data.name}`,
+      order: Number(data.order),
+    });
+    console.log(response);
   };
   return (
     <div className="grid grid-cols-12 gap-3">
@@ -26,9 +35,11 @@ export default function SectionsPage() {
         <fieldset className="col-span-5">
           <div className="grid grid-cols-2 gap-4">
             <select
+              required
               onChange={handleFieldsChange}
               className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 text-md placeholder:text-emerald-800"
               name="topic"
+              value={data.topic}
             >
               {languagesData.map((lang, index) => (
                 <option value={lang} key={index}>
@@ -37,6 +48,7 @@ export default function SectionsPage() {
               ))}
             </select>
             <input
+              value={data.order}
               required
               onChange={handleFieldsChange}
               className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 text-md placeholder:text-emerald-800"
@@ -48,7 +60,9 @@ export default function SectionsPage() {
             />
           </div>
           <input
+            value={data.name}
             required
+            name="name"
             onChange={handleFieldsChange}
             className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
             type="text"
