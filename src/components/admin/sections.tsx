@@ -16,9 +16,10 @@ export default function SectionsPage() {
     <div>
       <form>
         <fieldset>
-          <div>
+          <div className="grid grid-cols-2 gap-4">
             <select
-              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
+              onChange={handleFieldsChange}
+              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 text-md placeholder:text-emerald-800"
               name="topic"
             >
               {languagesData.map((lang, index) => (
@@ -28,7 +29,8 @@ export default function SectionsPage() {
               ))}
             </select>
             <input
-              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
+              onChange={handleFieldsChange}
+              className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 text-md placeholder:text-emerald-800"
               type="number"
               name="order"
               placeholder="select order number"
@@ -37,6 +39,7 @@ export default function SectionsPage() {
             />
           </div>
           <input
+            onChange={handleFieldsChange}
             className="bg-dark py-2 px-3 outline-none border-2 border-emerald-700 text-emerald-600 w-full text-md placeholder:text-emerald-800"
             type="text"
             placeholder="Write section name"
