@@ -24,7 +24,7 @@ export default function MarkdownTextarea({
   preview,
   setPreview,
 }: PropsTypes) {
-  const [data, setData] = useState<DataTypes | any>({});
+  const [data, setData] = useState<DataTypes | any>({ topic: "Python" });
   const [fields, setFields] = useState(false);
 
   const handleChange = (e: any) => {
@@ -38,11 +38,14 @@ export default function MarkdownTextarea({
     });
   };
 
-  const { name, title, meta_title, meta_description, topic, meta_keywords } =
+  const { name, meta_title, meta_description, topic, meta_keywords } =
     data || {};
   const handleSubmitDoc = async (e: any) => {
-    // const response = await axios.post('/api/v1/doc', {})
-    console.log(data);
+    const response = await axios.post("/api/v1/doc", {
+      ...data,
+      content: markdownContent,
+    });
+    console.log(response);
   };
   return (
     <div>
