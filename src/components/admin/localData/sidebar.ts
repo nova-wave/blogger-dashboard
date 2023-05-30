@@ -22,8 +22,8 @@ export const sidebar: Sidebar = [
   },
   {
     icon: BsFillSignIntersectionFill,
-    name: "New Section",
-    link: "new-section",
+    name: "Sections",
+    link: "sections",
   },
   {
     icon: BsFiletypeDoc,
