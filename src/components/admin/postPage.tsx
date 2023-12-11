@@ -1,21 +1,24 @@
 "use client";
-import MarkdownTextarea from "./markdownTextarea";
 import { useState } from "react";
-import PreviewMarkdown from "./previewMarkdown";
+import dynamic from "next/dynamic";
+import "@uiw/react-markdown-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+
+const MarkdownEditor = dynamic(
+  () => import("@uiw/react-markdown-editor").then((mod) => mod.default),
+  { ssr: false }
+);
 
 export default function PostPage() {
-  const [markdownContent, setMarkdownContent] = useState("");
-  const [preview, setPreview] = useState(false);
-
+  const [body, setBody] = useState("");
+  console.log("galib vai", body);
   return (
-    <div className="w-full">
-      <MarkdownTextarea
-        markdownContent={markdownContent}
-        setMarkdownContent={setMarkdownContent}
-        preview={preview}
-        setPreview={setPreview}
+    <div className="w-full h-screen">
+      <MarkdownEditor
+        className="h-full"
+        value={body}
+        onChange={(e) => setBody(e as any)}
       />
-      {preview && <PreviewMarkdown markdownContent={markdownContent} />}
     </div>
   );
 }

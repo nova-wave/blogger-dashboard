@@ -16,18 +16,6 @@
   border-width: 1px;
   border-style: solid;
 }
-.bg-dark-light {
-  background: #0a0a0a;
-}
-.bg-dark {
-  background: #000000;
-}
-.bg-gray {
-  background: #2a2828;
-  border: 1px solid #3e3c3c;
-  padding: 0.12em 0.25em;
-  border-radius: 0.375rem;
-}
 .text-gray {
   color: #888;
 }
@@ -54,6 +42,8 @@
 
 /* Customize the markdown preview section */
 .markdown-preview-custom {
+  background: #fff;
+  color: #000 !important;
   font-weight: 400;
 }
 .markdown-preview-custom pre {
@@ -78,7 +68,7 @@
 .markdown-preview-custom strong,
 .markdown-preview-custom b {
   font-weight: 900;
-  color: #ddd;
+  color: #000;
 }
 .markdown-preview-custom pre code {
   background: transparent;
@@ -98,8 +88,8 @@
 .markdown-preview-custom summary {
   cursor: pointer !important;
 }
-.markdown-preview-custom .offer-card{
-  @apply border-4 border-emerald-700 shadow border-l-rose-600  rounded  bg-emerald-700 py-4 px-6
+.markdown-preview-custom .offer-card {
+  @apply border-4 border-emerald-700 shadow border-l-rose-600  rounded  bg-emerald-700 py-4 px-6;
 }
 
 /* .markdown-preview-custom li::before {

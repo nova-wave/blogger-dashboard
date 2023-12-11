@@ -7,7 +7,7 @@ export default function AdminLayout({
 }) {
   return (
     <div className="flex h-screen gap-4">
-      <div className="w-[350px] h-full bg-[#23a2cd]">
+      <div className=" h-full bg-[#23a2cd]">
         <Sidebar />
       </div>
       <div className="w-full overflow-y-scroll">{children}</div>
